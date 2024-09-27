@@ -7,6 +7,9 @@ const ToDo = ({title, description, check, id}) => {
   function checkingTask() {
     firestore().collection('task').doc(id).update({check: !check});
   }
+  function trashTask() {
+    firestore().collection('task').doc(id).delete();
+  }
 
   return (
     <View style={styles.taskContainer}>
@@ -19,7 +22,7 @@ const ToDo = ({title, description, check, id}) => {
         <Text style={styles.titleText}>{title}</Text>
         <Text style={styles.descriptionText}>{description}</Text>
       </View>
-      <Pressable  onPress={() => checkingTask()} style={styles.trashButton}>
+      <Pressable  onPress={() => trashTask()} style={styles.trashButton}>
         <Text style={styles.checkText}>
           ✗
         </Text>
